@@ -21,6 +21,16 @@
         gap: 40px;
     }
 
+    .project-card--featured,
+    .project-card--development,
+    .project-demo-group {
+        grid-column: 1 / -1;
+    }
+
+    .project-card--featured {
+        grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
+    }
+
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -124,6 +134,19 @@
     .portfolio-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+
+    .project-card--featured {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-card--featured .project-visual {
+        min-height: 250px;
+    }
+
+    .project-demo-group {
+        padding: 20px;
     }
 
     .about-heading {
