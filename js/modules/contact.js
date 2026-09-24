@@ -1,24 +1,27 @@
-import { SITE_CONFIG } from '../config/site-config.js';
 import { qs, qsa } from '../utils/helpers.js';
 
 const ERROR_MESSAGES = {
-    name: 'Por favor ingresa tu nombre.',
-    email: 'Por favor ingresa un correo válido.',
-    phone: 'Por favor ingresa un número de teléfono válido.',
-    message: 'Por favor escribe tu mensaje.',
+    name: 'Por favor ingresa tu nombre completo.',
+    email: 'Por favor ingresa un correo electrónico válido.',
+    phone: 'Por favor ingresa un número de teléfono válido (mínimo 7 dígitos).',
+    interest: 'Por favor selecciona el área de tu interés.',
+    message: 'Por favor escribe tu mensaje explicando tu requerimiento.',
 };
 
 export const initContact = () => {
     const form = qs('#contactForm');
     if (!form) return;
 
-    const submitBtn = qs('#submitBtn');
+    const formFields = qs('#formFields', form);
+    const formSuccessCard = qs('#formSuccessCard', form);
+    const formErrorBanner = qs('#formErrorBanner', form);
+    const submitBtn = qs('#submitBtn', form);
     const btnText = qs('.btn-text', submitBtn);
     const btnLoading = qs('.btn-loading', submitBtn);
-    const formStatus = qs('#formStatus');
+    const resetFormBtn = qs('#resetFormBtn', form);
 
     const showError = (field) => {
-        const errorSpan = qs(`#error-${field.name}`);
+        const errorSpan = qs(`#error-${field.name}`, form);
         if (!errorSpan) return;
 
         errorSpan.textContent = ERROR_MESSAGES[field.name] || field.validationMessage;
@@ -27,7 +30,7 @@ export const initContact = () => {
     };
 
     const clearError = (field) => {
-        const errorSpan = qs(`#error-${field.name}`);
+        const errorSpan = qs(`#error-${field.name}`, form);
         if (!errorSpan) return;
 
         errorSpan.textContent = '';
@@ -37,27 +40,73 @@ export const initContact = () => {
 
     const validateField = (field) => {
         clearError(field);
-        const isValid = field.checkValidity();
+
+        if (field.name === 'name') {
+            const isValid = field.value.trim().length >= 2;
+            if (!isValid) {
+                showError(field);
+                return false;
+            }
+            return true;
+        }
+
+        if (field.name === 'email') {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const isValid = emailRegex.test(field.value.trim());
+            if (!isValid) {
+                showError(field);
+                return false;
+            }
+            return true;
+        }
 
         if (field.name === 'phone') {
-            const phoneIsValid = /^\d{7,15}$/.test(field.value.replace(/\s/g, ''));
-            if (phoneIsValid) return true;
-            showError(field);
-            return false;
+            const digits = field.value.replace(/\D/g, '');
+            const phoneRegex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\./0-9]{6,15}$/;
+            const isValid = digits.length >= 7 && digits.length <= 15 && phoneRegex.test(field.value.trim());
+            if (!isValid) {
+                showError(field);
+                return false;
+            }
+            return true;
         }
 
-        if (!isValid) {
-            showError(field);
-            return false;
+        if (field.name === 'interest') {
+            const isValid = field.value.trim() !== '';
+            if (!isValid) {
+                showError(field);
+                return false;
+            }
+            return true;
         }
+
+        if (field.name === 'message') {
+            const isValid = field.value.trim().length >= 8;
+            if (!isValid) {
+                showError(field);
+                return false;
+            }
+            return true;
+        }
+
         return true;
     };
 
     const validateForm = () => {
         let isFormValid = true;
-        qsa('input, textarea', form).forEach((field) => {
-            if (!validateField(field)) isFormValid = false;
+        let firstInvalidField = null;
+
+        qsa('input:not([name="bot-field"]):not([type="hidden"]), select, textarea', form).forEach((field) => {
+            if (!validateField(field)) {
+                isFormValid = false;
+                if (!firstInvalidField) firstInvalidField = field;
+            }
         });
+
+        if (firstInvalidField) {
+            firstInvalidField.focus();
+        }
+
         return isFormValid;
     };
 
@@ -67,63 +116,83 @@ export const initContact = () => {
         btnLoading.hidden = !isLoading;
     };
 
-    const showStatus = (type, message) => {
-        formStatus.textContent = message;
-        formStatus.className = `form-status ${type}`;
-        formStatus.hidden = false;
+    const showSuccess = () => {
+        if (formFields) formFields.hidden = true;
+        if (formErrorBanner) formErrorBanner.hidden = true;
+        if (formSuccessCard) formSuccessCard.hidden = false;
     };
 
-    qsa('input, textarea', form).forEach((field) => {
-        field.addEventListener('input', () => clearError(field));
-        field.addEventListener('blur', () => validateField(field));
-    });
+    const showErrorBanner = () => {
+        if (formErrorBanner) formErrorBanner.hidden = false;
+    };
 
-    const sendSimulated = () => new Promise((resolve) => {
-        setTimeout(resolve, 1200);
-    });
+    const resetForm = () => {
+        form.reset();
+        qsa('input, select, textarea', form).forEach((field) => clearError(field));
+        if (formSuccessCard) formSuccessCard.hidden = true;
+        if (formErrorBanner) formErrorBanner.hidden = true;
+        if (formFields) formFields.hidden = false;
+        setLoading(false);
+    };
 
-    const sendEmailJS = async (formData) => {
-        const emailjsAvailable = window.emailjs
-            && SITE_CONFIG.emailjs.PUBLIC_KEY
-            && SITE_CONFIG.emailjs.SERVICE_ID
-            && SITE_CONFIG.emailjs.TEMPLATE_ID;
-
-        if (!emailjsAvailable) return false;
-
-        window.emailjs.init(SITE_CONFIG.emailjs.PUBLIC_KEY);
-
-        await window.emailjs.send(SITE_CONFIG.emailjs.SERVICE_ID, SITE_CONFIG.emailjs.TEMPLATE_ID, {
-            from_name: formData.get('name'),
-            from_email: formData.get('email'),
-            phone: formData.get('phone'),
-            message: formData.get('message'),
-            to_email: SITE_CONFIG.email,
+    // Listeners de validación interactiva
+    qsa('input:not([name="bot-field"]):not([type="hidden"]), select, textarea', form).forEach((field) => {
+        field.addEventListener('input', () => {
+            clearError(field);
+            if (formErrorBanner) formErrorBanner.hidden = true;
         });
+        field.addEventListener('change', () => {
+            clearError(field);
+            if (formErrorBanner) formErrorBanner.hidden = true;
+        });
+        field.addEventListener('blur', () => {
+            if (field.value.trim() !== '') {
+                validateField(field);
+            }
+        });
+    });
 
-        return true;
-    };
+    if (resetFormBtn) {
+        resetFormBtn.addEventListener('click', () => {
+            resetForm();
+        });
+    }
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
+        // Honeypot antispam: si viene relleno, descartar silenciosamente
+        const botField = form.elements['bot-field'];
+        if (botField && botField.value) {
+            showSuccess();
+            return;
+        }
+
         if (!validateForm()) {
-            showStatus('error', 'Por favor corrige los campos marcados en rojo.');
             return;
         }
 
         setLoading(true);
-        formStatus.hidden = true;
+        if (formErrorBanner) formErrorBanner.hidden = true;
 
         try {
             const formData = new FormData(form);
-            const sentWithEmailJS = await sendEmailJS(formData);
-            if (!sentWithEmailJS) await sendSimulated();
+            const searchParams = new URLSearchParams(formData).toString();
 
-            showStatus('success', '¡Mensaje enviado con éxito! Te contactaremos pronto.');
-            form.reset();
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: searchParams,
+            });
+
+            if (response.ok || response.status === 200 || response.status === 303) {
+                showSuccess();
+            } else {
+                throw new Error('Form submission failed');
+            }
         } catch (error) {
-            console.error('Error al enviar el mensaje:', error);
-            showStatus('error', 'Ocurrió un error al enviar tu mensaje. Inténtalo de nuevo o escríbenos por WhatsApp.');
+            console.error('Error al procesar el formulario de contacto.');
+            showErrorBanner();
         } finally {
             setLoading(false);
         }

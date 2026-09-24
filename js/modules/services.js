@@ -1,6 +1,28 @@
 import { SERVICES } from '../data/services.js';
 import { qs } from '../utils/helpers.js';
 
+/**
+ * Selecciona una capacidad en el formulario de contacto y desplaza la vista suavemente.
+ * @param {string} capability - Nombre exacto de la capacidad tecnológica.
+ */
+export const selectCapabilityInContactForm = (capability) => {
+    const interestSelect = document.getElementById('interest');
+    if (interestSelect && capability) {
+        interestSelect.value = capability;
+        interestSelect.dispatchEvent(new Event('change'));
+
+        // Efecto visual sutil de confirmación de preselección
+        interestSelect.classList.remove('highlight-pulse');
+        void interestSelect.offsetWidth;
+        interestSelect.classList.add('highlight-pulse');
+    }
+
+    const contactSection = document.getElementById('contacto');
+    if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+};
+
 export const initServices = () => {
     const servicesGrid = qs('.services-grid');
     if (!servicesGrid) return;
@@ -21,8 +43,8 @@ export const initServices = () => {
                     <p class="service-text"></p>
                 </div>
                 <div class="service-card-footer">
-                    <a href="#contacto" class="service-action" aria-label="Consultar sobre ${service.title}">
-                        <span>Ver capacidad</span>
+                    <a href="#contacto" class="service-action" data-capability="${service.title}" aria-label="Hablemos de ${service.title}">
+                        <span>Hablemos de esta solución</span>
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -32,4 +54,16 @@ export const initServices = () => {
             return card;
         })
     );
+
+    // Delegación de eventos para clicks en los CTA de capacidades
+    document.addEventListener('click', (event) => {
+        const actionBtn = event.target.closest('[data-capability]');
+        if (!actionBtn) return;
+
+        const capability = actionBtn.getAttribute('data-capability');
+        if (capability) {
+            event.preventDefault();
+            selectCapabilityInContactForm(capability);
+        }
+    });
 };

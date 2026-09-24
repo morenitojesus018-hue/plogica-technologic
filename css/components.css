@@ -1,4 +1,4 @@
-/* ========================================================================== 
+/* ==========================================================================
    COMPONENTES REUTILIZABLES: BOTONES, TARJETAS, FORMULARIO Y FOOTER
    ========================================================================== */
 .btn,
@@ -94,7 +94,6 @@
 
 .portfolio-card,
 .contact-item,
-.contact-form,
 .legal-section {
     background: var(--bg-surface);
     border: 1px solid var(--border-soft);
@@ -414,34 +413,77 @@
     color: var(--brand-aqua-deep);
 }
 
+/* ==========================================================================
+   FORMULARIO DE CONTACTO Y ACCESO FLOTANTE A WHATSAPP
+   ========================================================================== */
+
+/* Columna izquierda: texto auxiliar */
+.contact-auxiliary {
+    margin-top: 10px;
+    padding: 16px 20px;
+    background: rgba(18, 59, 67, 0.035);
+    border: 1px solid rgba(18, 59, 67, 0.08);
+    border-left: 3px solid var(--brand-aqua-deep);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--brand-petrol);
+}
+
+.contact-auxiliary p {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0;
+}
+
+.contact-auxiliary i {
+    font-size: 1rem;
+    color: var(--brand-aqua-deep);
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+/* Formulario moderno de contacto */
 .contact-form {
+    background: linear-gradient(175deg, #FFFFFF 0%, #F8FAF9 100%);
+    border: 1px solid var(--border-soft);
     border-radius: var(--radius);
-    padding: 36px;
+    padding: 40px 36px;
+    box-shadow: 0 12px 36px rgba(16, 43, 49, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    position: relative;
+    overflow: hidden;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .form-group label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.86rem;
     font-weight: 600;
     margin-bottom: 8px;
-    color: var(--color-gray);
+    color: var(--brand-petrol);
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.select-wrapper select {
     width: 100%;
+    font-family: inherit;
     font-size: 0.95rem;
     color: var(--text-main);
-    background: var(--bg-main);
+    background: #FFFFFF;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-sm);
-    padding: 13px 16px;
+    padding: 14px 18px;
     transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-group textarea {
     resize: vertical;
+    min-height: 120px;
 }
 
 .form-group input::placeholder,
@@ -450,25 +492,77 @@
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.select-wrapper select:focus {
     outline: none;
     border-color: var(--brand-aqua-deep);
-    box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.18);
+    box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.22);
+}
+
+.select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 44px;
+    cursor: pointer;
+}
+
+.select-wrapper .select-chevron {
+    position: absolute;
+    right: 18px;
+    font-size: 0.85rem;
+    color: var(--brand-petrol);
+    pointer-events: none;
+    transition: transform var(--transition), color var(--transition);
+}
+
+.select-wrapper select:focus + .select-chevron {
+    color: var(--brand-aqua-deep);
+    transform: rotate(180deg);
+}
+
+/* Pulso visual al preseleccionar una capacidad desde los CTA */
+@keyframes selectPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0.5);
+        border-color: var(--brand-aqua-deep);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgba(var(--color-accent-rgb), 0.22);
+        border-color: var(--brand-aqua);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0);
+        border-color: var(--border-soft);
+    }
+}
+
+.select-wrapper select.highlight-pulse {
+    animation: selectPulse 1.6s ease-out;
 }
 
 .form-group input.invalid,
-.form-group textarea.invalid {
+.form-group textarea.invalid,
+.select-wrapper select.invalid {
     border-color: var(--color-error);
 }
 
 .form-group input.invalid:focus,
-.form-group textarea.invalid:focus {
-    box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.12);
+.form-group textarea.invalid:focus,
+.select-wrapper select.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.14);
 }
 
 .form-error {
     display: none;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
+    font-weight: 500;
     color: var(--color-error);
     margin-top: 6px;
 }
@@ -477,25 +571,161 @@
     display: block;
 }
 
-.form-status {
-    margin-top: 16px;
-    padding: 14px 18px;
-    border-radius: var(--radius-sm);
-    font-size: 0.9rem;
-    font-weight: 500;
+/* Tarjeta de éxito */
+.form-success-card {
     text-align: center;
+    padding: 36px 20px;
 }
 
-.form-status.success {
-    background: rgba(var(--color-accent-rgb), 0.10);
-    border: 1px solid rgba(var(--color-accent-2-rgb), 0.35);
+.form-success-card .success-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: var(--brand-aqua-deep);
+    background: rgba(var(--color-accent-rgb), 0.12);
+    border: 1px solid rgba(var(--color-accent-2-rgb), 0.30);
+    border-radius: 50%;
+}
+
+.form-success-card .success-title {
+    font-size: 1.45rem;
+    font-weight: 700;
     color: var(--brand-petrol);
+    margin-bottom: 12px;
 }
 
-.form-status.error {
-    background: rgba(180, 35, 24, 0.07);
-    border: 1px solid rgba(180, 35, 24, 0.28);
+.form-success-card .success-text {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 440px;
+    margin: 0 auto 28px;
+}
+
+.form-success-card .reset-form-btn {
+    margin: 0 auto;
+}
+
+/* Banner de error */
+.form-error-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: rgba(180, 35, 24, 0.06);
+    border: 1px solid rgba(180, 35, 24, 0.25);
+    border-radius: 12px;
+    text-align: left;
+}
+
+.error-banner-icon {
+    font-size: 1.25rem;
     color: var(--color-error);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.error-banner-title {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-error);
+    margin-bottom: 3px;
+}
+
+.error-banner-text {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Botón Flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 990;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25D366;
+    color: #FFFFFF;
+    padding: 12px 20px 12px 16px;
+    border-radius: 100px;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.32), 0 4px 12px rgba(18, 59, 67, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    background: #20BA5A;
+    color: #FFFFFF;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.44), 0 6px 16px rgba(18, 59, 67, 0.14);
+}
+
+.whatsapp-float:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.whatsapp-float:focus-visible {
+    outline: 3px solid rgba(37, 211, 102, 0.6);
+    outline-offset: 3px;
+}
+
+.whatsapp-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    line-height: 1;
+}
+
+.whatsapp-label {
+    font-family: var(--font-title);
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+}
+
+.whatsapp-tooltip {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 12px);
+    white-space: nowrap;
+    background: var(--brand-petrol);
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(4px);
+    transition: opacity 180ms ease, transform 180ms ease;
+    box-shadow: 0 4px 14px rgba(16, 43, 49, 0.16);
+}
+
+.whatsapp-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 24px;
+    border: 5px solid transparent;
+    border-top-color: var(--brand-petrol);
+}
+
+.whatsapp-float:hover .whatsapp-tooltip {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .footer {
