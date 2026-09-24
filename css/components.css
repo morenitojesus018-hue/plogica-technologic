@@ -92,7 +92,6 @@
     transform: none !important;
 }
 
-.service-card,
 .portfolio-card,
 .contact-item,
 .contact-form,
@@ -102,58 +101,152 @@
     box-shadow: var(--shadow-card);
 }
 
+/* Tarjeta de capacidad tecnológica: editorial y tecnológica */
 .service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(170deg, #FFFFFF 0%, #F6FAF9 100%);
+    border: 1px solid var(--border-soft);
     border-radius: var(--radius);
-    padding: 40px 32px;
-    text-align: center;
+    padding: 36px 32px 30px;
+    box-shadow: 0 4px 20px rgba(16, 43, 49, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    text-align: left;
+    overflow: hidden;
     transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
+/* Hover sutil con degradado aqua muy tenue */
+.service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 88% 12%, rgba(var(--color-accent-rgb), 0.10) 0%, rgba(var(--color-accent-2-rgb), 0.04) 55%, transparent 75%);
+    opacity: 0;
+    transition: opacity 280ms ease;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
 .service-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
     border-color: rgba(var(--color-accent-2-rgb), 0.45);
-    box-shadow: var(--shadow-hover);
+    box-shadow: 0 16px 36px rgba(18, 59, 67, 0.08);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-card-header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
 }
 
 .service-icon {
-    width: 72px;
-    height: 72px;
-    margin: 0 auto 24px;
+    width: 52px;
+    height: 52px;
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.7rem;
-    color: var(--brand-aqua-deep);
-    background: rgba(var(--color-accent-rgb), 0.11);
-    border: 1px solid rgba(var(--color-accent-2-rgb), 0.24);
-    border-radius: 20px;
-    transition: all var(--transition);
-}
-
-.service-card:nth-child(2) .service-icon {
+    font-size: 1.35rem;
     color: var(--brand-petrol);
-    background: rgba(18, 59, 67, 0.07);
-    border-color: rgba(18, 59, 67, 0.16);
-}
-
-.service-card:nth-child(3) .service-icon {
-    color: #9A6500;
-    background: #FFF7DE;
-    border-color: #F1D78B;
+    background: rgba(var(--color-accent-rgb), 0.12);
+    border: 1px solid rgba(var(--color-accent-2-rgb), 0.28);
+    border-radius: 14px;
+    transition: color var(--transition), background var(--transition), border-color var(--transition), transform var(--transition);
 }
 
 .service-card:hover .service-icon {
-    transform: scale(1.08) rotate(-4deg);
+    color: var(--brand-aqua-deep);
+    background: rgba(var(--color-accent-rgb), 0.20);
+    border-color: var(--brand-aqua-deep);
+    transform: scale(1.05);
+}
+
+/* Numeración editorial 01–06 */
+.service-num {
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--brand-petrol);
+    opacity: 0.8;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(18, 59, 67, 0.04);
+    border: 1px solid rgba(18, 59, 67, 0.08);
+    transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.service-card:hover .service-num {
+    color: var(--brand-aqua-deep);
+    border-color: rgba(var(--color-accent-2-rgb), 0.35);
+    background: rgba(var(--color-accent-rgb), 0.08);
+}
+
+.service-card-body {
+    position: relative;
+    z-index: 1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-title {
-    font-size: 1.25rem;
+    font-size: 1.22rem;
+    font-weight: 700;
+    color: var(--text-main);
     margin-bottom: 12px;
+    line-height: 1.35;
 }
 
 .service-text {
     color: var(--color-gray);
-    font-size: 0.95rem;
+    font-size: 0.94rem;
+    line-height: 1.65;
+    margin-bottom: 26px;
+    flex-grow: 1;
+}
+
+.service-card-footer {
+    position: relative;
+    z-index: 1;
+    padding-top: 18px;
+    border-top: 1px solid rgba(221, 232, 230, 0.7);
+}
+
+.service-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-title);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--brand-petrol);
+    transition: color var(--transition);
+}
+
+.service-action i {
+    font-size: 0.82rem;
+    transition: transform var(--transition), color var(--transition);
+}
+
+.service-card:hover .service-action,
+.service-action:hover {
+    color: var(--brand-aqua-deep);
+}
+
+.service-card:hover .service-action i,
+.service-action:hover i {
+    transform: translateX(5px);
+    color: var(--brand-aqua-deep);
 }
 
 .portfolio-card {
