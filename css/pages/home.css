@@ -22,6 +22,30 @@
     z-index: 0;
 }
 
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: -18%;
+    background:
+        radial-gradient(circle at 22% 32%, rgba(var(--color-accent-rgb), 0.10), transparent 28%),
+        radial-gradient(circle at 78% 64%, rgba(var(--color-accent-2-rgb), 0.08), transparent 24%);
+    filter: blur(26px);
+    opacity: 0.72;
+    animation: heroAtmosphere 14s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.hero-network {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.82;
+}
+
 .hero-bg::after {
     content: '';
     position: absolute;
@@ -32,6 +56,17 @@
     background-size: 48px 48px;
     mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
     -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+    z-index: 2;
+}
+
+@keyframes heroAtmosphere {
+    from {
+        transform: translate3d(-1%, -1%, 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(1%, 1%, 0) scale(1.04);
+    }
 }
 
 .hero-content {
@@ -72,6 +107,36 @@
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.hero-actions .btn-primary {
+    background: linear-gradient(135deg, var(--brand-petrol) 0%, #17656B 100%);
+    border-color: transparent;
+    box-shadow: 0 10px 24px rgba(18, 59, 67, 0.16);
+}
+
+.hero-actions .btn-primary:hover {
+    background: linear-gradient(135deg, #17656B 0%, var(--brand-aqua-deep) 100%);
+    color: var(--color-white);
+    box-shadow: 0 12px 26px rgba(18, 59, 67, 0.18);
+}
+
+.hero-actions .btn-outline {
+    background: rgba(251, 252, 251, 0.58);
+    border-color: rgba(18, 59, 67, 0.72);
+    box-shadow: 0 6px 18px rgba(16, 43, 49, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.hero-actions .btn-outline:hover {
+    background: rgba(var(--color-accent-rgb), 0.14);
+    border-color: var(--brand-aqua-deep);
+    box-shadow: 0 9px 20px rgba(16, 43, 49, 0.08);
+}
+
+.hero-actions .btn:hover i {
+    transform: translateX(3px);
 }
 
 .services {
