@@ -63,7 +63,10 @@ const initActiveLinks = () => {
                 if (!entry.isIntersecting) return;
 
                 if (entry.target.id === 'inicio') {
-                    links.forEach((link) => link.classList.remove('active'));
+                    links.forEach((link) => {
+                        const matches = link.getAttribute('href') === '#inicio';
+                        link.classList.toggle('active', matches);
+                    });
                     return;
                 }
 

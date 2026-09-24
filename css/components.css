@@ -729,32 +729,42 @@
 }
 
 .footer {
-    background: var(--bg-surface-soft);
-    border-top: 1px solid var(--border-soft);
-    padding: 72px 0 0;
+    background: linear-gradient(180deg, #EDF5F3 0%, var(--bg-surface-soft) 100%);
+    border-top: 1px solid rgba(var(--color-accent-rgb), 0.35);
+    padding: 76px 0 0;
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr;
-    gap: 48px;
-    padding-bottom: 48px;
+    grid-template-columns: minmax(280px, 1.6fr) minmax(150px, 0.8fr) minmax(180px, 0.9fr);
+    gap: 64px;
+    padding-bottom: 56px;
 }
 
 .footer-brand .logo-footer {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .footer-tagline {
-    font-size: 0.9rem;
-    color: var(--color-gray);
-    font-style: italic;
-    margin-bottom: 10px;
+    max-width: 340px;
+    font-size: 0.98rem;
+    color: var(--text-main);
+    line-height: 1.65;
+    margin-bottom: 22px;
 }
 
-.footer-legal {
-    font-size: 0.85rem;
-    color: var(--color-gray-dark);
+.footer-corporate-name {
+    font-family: var(--font-title);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--brand-petrol);
+    margin-bottom: 6px;
+}
+
+.footer-corporate-detail {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    line-height: 1.6;
 }
 
 .footer-title {
@@ -772,37 +782,12 @@
 
 .footer-links a {
     font-size: 0.9rem;
-    color: var(--color-gray);
+    color: var(--text-muted);
+    transition: color var(--transition), transform var(--transition);
 }
 
 .footer-links a:hover {
     color: var(--brand-aqua-deep);
-}
-
-.footer-social {
-    display: flex;
-    gap: 12px;
-}
-
-.social-link {
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    color: var(--brand-petrol);
-    background: var(--bg-surface);
-    border: 1px solid var(--border-soft);
-    border-radius: 12px;
-    transition: all var(--transition);
-}
-
-.social-link:hover {
-    color: var(--brand-petrol);
-    background: rgba(var(--color-accent-rgb), 0.14);
-    border-color: var(--brand-aqua-deep);
-    transform: translateY(-2px);
 }
 
 .footer-bottom {
@@ -813,5 +798,5 @@
 
 .footer-bottom p {
     font-size: 0.82rem;
-    color: var(--color-gray-dark);
+    color: var(--text-muted);
 }
