@@ -11,6 +11,11 @@
         gap: 24px;
     }
 
+    .about-focus-areas {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
     .about-grid {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -112,6 +117,28 @@
         gap: 20px;
     }
 
+    .about-heading {
+        margin-bottom: 40px;
+    }
+
+    .about-principles-wrapper {
+        padding: 32px 24px;
+    }
+
+    .about-focus-areas {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 40px;
+    }
+
+    .about-identity-callout {
+        padding: 18px 20px;
+    }
+
+    .identity-quote {
+        font-size: 0.98rem;
+    }
+
     .services-editorial {
         font-size: 0.88rem;
         padding: 9px 16px;
@@ -193,8 +220,21 @@
         padding: 28px 22px 24px;
     }
 
-    .about-card {
-        padding: 28px 22px;
+    .about-principles-wrapper {
+        padding: 26px 18px;
+    }
+
+    .principle-node {
+        gap: 14px;
+    }
+
+    .node-indicator {
+        width: 32px;
+        height: 32px;
+    }
+
+    .flow-track {
+        left: 15px;
     }
 
     .portfolio-body {
