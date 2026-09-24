@@ -1,0 +1,212 @@
+/* ========================================================================== 
+   ESTILOS ESPECÍFICOS DE LA PÁGINA DE INICIO
+   ========================================================================== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: calc(var(--header-height) + 40px) 0 80px;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 50% 40% at 20% 20%, rgba(var(--color-accent-rgb), 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 70%, rgba(var(--color-accent-2-rgb), 0.06) 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-main) 100%);
+    z-index: 0;
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(18, 59, 67, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 59, 67, 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+}
+
+.hero-badge {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: var(--brand-petrol);
+    background: rgba(var(--color-accent-rgb), 0.10);
+    border: 1px solid rgba(var(--color-accent-2-rgb), 0.24);
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-muted);
+    max-width: 640px;
+    margin: 0 auto 36px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.services {
+    background: linear-gradient(180deg, var(--bg-main) 0%, var(--bg-surface-soft) 100%);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.about {
+    background: var(--bg-main);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 56px;
+    align-items: start;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.about-text p {
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    line-height: 1.85;
+    margin-bottom: 20px;
+}
+
+.about-text p:first-child::first-letter {
+    font-family: var(--font-title);
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    float: left;
+    line-height: 1;
+    padding-right: 8px;
+}
+
+.about-card {
+    background: var(--bg-surface);
+    border: 1px solid rgba(var(--color-accent-2-rgb), 0.30);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brand-aqua-deep), var(--brand-aqua));
+}
+
+.about-card-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.2rem;
+    margin-bottom: 28px;
+    color: var(--brand-petrol);
+}
+
+.about-card-title i {
+    font-size: 1.2rem;
+}
+
+.about-card-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.about-card-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.about-card-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.about-card-value {
+    font-family: var(--font-title);
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.about-link {
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--brand-aqua-deep);
+}
+
+.about-link:hover {
+    color: var(--brand-petrol);
+    text-decoration: underline;
+}
+
+.portfolio {
+    background: linear-gradient(180deg, var(--bg-surface-soft) 0%, var(--bg-main) 100%);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact {
+    background: var(--bg-main);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 48px;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: start;
+}

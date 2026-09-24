@@ -1,0 +1,132 @@
+/* ========================================================================== 
+   ESTRUCTURA GLOBAL: HEADER Y NAVEGACIÓN
+   ========================================================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background: rgba(251, 252, 251, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-soft);
+    z-index: 1000;
+    transition: background var(--transition), box-shadow var(--transition);
+}
+
+.header.scrolled {
+    background: rgba(251, 252, 251, 0.98);
+    box-shadow: var(--shadow-soft);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    position: relative;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    color: var(--logo-ink);
+    background: var(--logo-ink);
+    border-radius: 10px;
+}
+
+/* El asset oficial es vertical; el contenedor muestra su símbolo sin editar el original. */
+.logo-icon img {
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    width: 73px;
+    max-width: none;
+    height: auto;
+    transform: translateX(-50%);
+}
+
+.logo-text {
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-main);
+}
+
+.logo-text strong {
+    font-weight: 800;
+    background: linear-gradient(120deg, var(--logo-aqua), var(--logo-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 100px;
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--brand-petrol);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--brand-aqua-deep), var(--brand-aqua));
+    border-radius: 2px;
+}
+
+.nav-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--brand-petrol);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    z-index: 1100;
+}
+
+.nav-toggle .fa-xmark {
+    display: none;
+}
+
+.nav-toggle.open .fa-bars {
+    display: none;
+}
+
+.nav-toggle.open .fa-xmark {
+    display: block;
+}

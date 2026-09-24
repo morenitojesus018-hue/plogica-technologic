@@ -1,0 +1,150 @@
+/* ========================================================================== 
+   PLOGICA TECHNOLOGIC - BASE Y VARIABLES
+   ========================================================================== */
+:root {
+    /* Identidad visual global */
+    --bg-main:         #F4F7F6;
+    --bg-surface:      #FBFCFB;
+    --bg-surface-soft: #EDF4F2;
+    --text-main:       #102B31;
+    --text-muted:      #5F7075;
+    --brand-aqua:      #24DCCB;
+    --brand-aqua-deep: #17B9AE;
+    --brand-petrol:    #123B43;
+    --border-soft:     #DDE8E6;
+
+    --shadow-soft:     0 8px 24px rgba(16, 43, 49, 0.06);
+    --shadow-card:     0 12px 32px rgba(16, 43, 49, 0.07);
+    --shadow-hover:    0 14px 34px rgba(16, 43, 49, 0.10);
+
+    /* Alias de compatibilidad para los componentes ya existentes */
+    --color-bg:        var(--bg-main);
+    --color-bg-soft:   var(--bg-surface-soft);
+    --color-bg-card:   var(--bg-surface);
+    --color-accent:    var(--brand-aqua);
+    --color-accent-2:  var(--brand-aqua-deep);
+    --color-accent-rgb:  36, 220, 203;
+    --color-accent-2-rgb: 23, 185, 174;
+    --color-white:     #FFFFFF;
+    --color-gray:      var(--text-muted);
+    --color-gray-dark: #557077;
+    --color-error:     #B42318;
+
+    /* Colores originales reservados para el logo actual */
+    --logo-aqua:       #00FFAA;
+    --logo-cyan:       #00D4FF;
+    --logo-ink:        #071B1F;
+
+    --font-title: 'Montserrat', sans-serif;
+    --font-body:  'Inter', sans-serif;
+    --transition: 220ms ease;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --header-height: 76px;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + 20px);
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-main);
+    background-color: var(--bg-main);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+input,
+textarea {
+    font-family: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-title);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text-main);
+}
+
+.gradient-text {
+    background: linear-gradient(120deg, var(--brand-petrol), var(--brand-aqua-deep));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.section {
+    padding: 96px 0;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 56px;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--brand-petrol);
+    background: rgba(var(--color-accent-rgb), 0.10);
+    border: 1px solid rgba(var(--color-accent-2-rgb), 0.24);
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+}
+
+.section-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 16px;
+}
+
+.section-subtitle {
+    color: var(--color-gray);
+    font-size: 1.05rem;
+}

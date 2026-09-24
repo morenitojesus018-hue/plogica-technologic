@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plogica Technologic | Desarrollo de Software a la Medida - Turemesaya S.A.S.</title>
+
+    <!-- Meta descripción para SEO -->
+    <meta name="description" content="Desarrollo de software a la medida, MVPs y soluciones tecnológicas para empresas. Turemesaya S.A.S. - Plogica Technologic. Transformamos tus ideas en soluciones digitales funcionales.">
+
+    <!-- ============================================
+         FUENTES GOOGLE (Montserrat títulos / Inter textos)
+    ============================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (íconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Estilos organizados por responsabilidad -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages/home.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- ============================================
+         1. HEADER / NAVEGACIÓN
+    ============================================ -->
+    <header class="header">
+        <nav class="nav container" aria-label="Navegación principal">
+            <!-- Logo (redirige al inicio) -->
+            <a href="#inicio" class="logo" aria-label="Plogica Technologic - Volver al inicio">
+                <span class="logo-icon"><img src="assets/logos/Logo_Universal_Plogica.jpeg" alt="" aria-hidden="true"></span>
+                <span class="logo-text">Plogica <strong>Technologic</strong></span>
+            </a>
+
+            <!-- Botón menú hamburguesa (solo móvil) -->
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir o cerrar menú" aria-expanded="false" aria-controls="navMenu">
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Menú de navegación -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
+                <li><a href="#quienes-somos" class="nav-link">Quiénes Somos</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ============================================
+             2. HERO / PORTADA
+        ============================================ -->
+        <section class="hero" id="inicio">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="hero-content container">
+                <span class="hero-badge">Turemesaya S.A.S. · NIT 902031687</span>
+                <h1 class="hero-title">
+                    Construimos el <span class="gradient-text">futuro digital</span> de tu negocio
+                </h1>
+                <p class="hero-subtitle">
+                    Desarrollo de software a la medida, MVPs y soluciones tecnológicas
+                    para empresas que quieren crecer.
+                </p>
+                <div class="hero-actions">
+                    <!-- Botón WhatsApp (abre conversación) -->
+                    <a href="https://wa.me/573337335336?text=Hola%2C%20quiero%20hablar%20con%20un%20experto%20de%20Plogica%20Technologic" 
+                       target="_blank" rel="noopener" class="btn btn-primary">
+                        <i class="fa-brands fa-whatsapp"></i> Habla con un experto
+                    </a>
+                    <!-- Botón scroll a servicios -->
+                    <a href="#servicios" class="btn btn-outline">
+                        Conoce nuestros servicios <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             3. SERVICIOS
+        ============================================ -->
+        <section class="section services" id="servicios">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-tag">Nuestros Servicios</span>
+                    <h2 class="section-title">Soluciones digitales para cada etapa de tu negocio</h2>
+                    <p class="section-subtitle">Desde validar tu idea hasta escalar tu plataforma, te acompañamos en todo el proceso.</p>
+                </div>
+
+                <div class="services-grid"></div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             4. QUIÉNES SOMOS  (sección principal)
+        ============================================ -->
+        <section class="section about" id="quienes-somos">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-tag">Quiénes Somos</span>
+                    <h2 class="section-title">Más que tecnología, entendemos tu negocio</h2>
+                </div>
+
+                <div class="about-grid">
+                    <!-- Texto institucional real -->
+                    <div class="about-text">
+                        <p>
+                            En Plogica Technologic no somos solo desarrolladores; somos un equipo de estrategas
+                            digitales apasionados por resolver problemas reales. Sabemos que el mundo del software
+                            es inmenso y a veces abrumador, por eso nuestro enfoque es sencillo: escuchamos tu idea,
+                            la diseñamos y la convertimos en una herramienta funcional sin complicaciones.
+                        </p>
+                        <p>
+                            Lideramos el proceso de creación de tu proyecto mientras tú te enfocas en lo que mejor
+                            sabes hacer: hacer crecer tu empresa. Creemos en la tecnología como un medio, no como un fin,
+                            y nuestro compromiso es ser tu aliado en cada paso del camino.
+                        </p>
+                    </div>
+
+                    <!-- Recuadro de formalidad: datos reales de la empresa -->
+                    <aside class="about-card" aria-label="Información legal de la empresa">
+                        <h3 class="about-card-title"><i class="fa-solid fa-building-shield"></i> Nuestra Empresa</h3>
+                        <ul class="about-card-list">
+                            <li>
+                                <span class="about-card-label">Razón Social</span>
+                                <span class="about-card-value">Turemesaya S.A.S.</span>
+                            </li>
+                            <li>
+                                <span class="about-card-label">NIT</span>
+                                <span class="about-card-value">902031687</span>
+                            </li>
+                            <li>
+                                <span class="about-card-label">Marca Comercial</span>
+                                <span class="about-card-value">Plogica Technologic</span>
+                            </li>
+                            <li>
+                                <span class="about-card-label">Correo</span>
+                                <a href="mailto:gerencia@turemesaya.com" class="about-card-value about-link">gerencia@turemesaya.com</a>
+                            </li>
+                            <li>
+                                <span class="about-card-label">WhatsApp</span>
+                                <a href="https://wa.me/573337335336" target="_blank" rel="noopener" class="about-card-value about-link">3337335336</a>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             5. PORTAFOLIO
+        ============================================ -->
+        <section class="section portfolio" id="portafolio">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-tag">Portafolio</span>
+                    <h2 class="section-title">Casos de éxito que demuestran nuestro trabajo</h2>
+                    <p class="section-subtitle">Proyectos reales desarrollados por nuestro equipo.</p>
+                </div>
+
+                <div class="portfolio-grid"></div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             6. CONTACTO
+        ============================================ -->
+        <section class="section contact" id="contacto">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-tag">Contacto</span>
+                    <h2 class="section-title">Hablemos de tu proyecto</h2>
+                    <p class="section-subtitle">Cuéntanos tu idea y te acompañamos a convertirla en realidad.</p>
+                </div>
+
+                <div class="contact-grid">
+
+                    <!-- Información de contacto directo -->
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                            <div>
+                                <span class="contact-label">Correo Electrónico</span>
+                                <a href="mailto:gerencia@turemesaya.com" class="contact-value">gerencia@turemesaya.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fa-brands fa-whatsapp"></i></span>
+                            <div>
+                                <span class="contact-label">Teléfono / WhatsApp</span>
+                                <a href="https://wa.me/573337335336" target="_blank" rel="noopener" class="contact-value">3337335336</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon"><i class="fa-solid fa-location-dot"></i></span>
+                            <div>
+                                <span class="contact-label">Ubicación</span>
+                                <span class="contact-value">Oficina Virtual - Colombia</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de contacto -->
+                    <!--
+                        INTEGRACIÓN FUTURA:
+                        - Netlify Forms: este formulario ya trae data-netlify="true" y el campo
+                          oculto "form-name", por lo que al desplegarlo en Netlify capturará
+                          los envíos automáticamente sin código adicional.
+                        - EmailJS: usa las credenciales del objeto SITE_CONFIG en js/config/site-config.js.
+                    -->
+                     <form id="contactForm" class="contact-form" name="contact" method="POST" data-netlify="true">
+                        <!-- Campo oculto requerido por Netlify Forms -->
+                        <input type="hidden" name="form-name" value="contact">
+
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+                            <span class="form-error" id="error-name"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo</label>
+                            <input type="email" id="email" name="email" placeholder="tucorreo@empresa.com" required>
+                            <span class="form-error" id="error-email"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" placeholder="3000000000" required>
+                            <span class="form-error" id="error-phone"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Cuéntanos sobre tu proyecto o idea..." required></textarea>
+                            <span class="form-error" id="error-message"></span>
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                            <span class="btn-text">Enviar Mensaje</span>
+                            <span class="btn-loading" hidden>
+                                <i class="fa-solid fa-spinner fa-spin"></i> Enviando...
+                            </span>
+                        </button>
+
+                        <!-- Mensaje de estado del formulario -->
+                        <div class="form-status" id="formStatus" role="status" aria-live="polite" hidden></div>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================
+         7. FOOTER
+    ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <!-- Columna: Marca -->
+                <div class="footer-col footer-brand">
+                    <a href="#inicio" class="logo logo-footer">
+                        <span class="logo-icon"><img src="assets/logos/Logo_Universal_Plogica.jpeg" alt="" aria-hidden="true"></span>
+                        <span class="logo-text">Plogica <strong>Technologic</strong></span>
+                    </a>
+                    <p class="footer-tagline">"Transformamos tus ideas en soluciones digitales funcionales"</p>
+                    <p class="footer-legal">Turemesaya S.A.S. · NIT 902031687</p>
+                </div>
+
+                <!-- Columna: Enlaces rápidos -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#portafolio">Portafolio</a></li>
+                        <li><a href="#quienes-somos">Quiénes Somos</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna: Legal -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacidad.html">Política de Privacidad</a></li>
+                        <li><a href="terminos.html">Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna: Redes sociales -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Síguenos</h4>
+                    <div class="footer-social">
+                        <!-- CAMBIAR ENLACES DE REDES SOCIALES AQUÍ -->
+                        <a href="#" class="social-link" aria-label="Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Línea de copyright -->
+            <div class="footer-bottom">
+                <p>© 2026 Turemesaya S.A.S. - Plogica Technologic. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+/* ========================================================================== 
+   COMPONENTES REUTILIZABLES: BOTONES, TARJETAS, FORMULARIO Y FOOTER
+   ========================================================================== */
+.btn,
+.button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-title);
+    min-height: 48px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 13px 24px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: background-color var(--transition), border-color var(--transition),
+        color var(--transition), box-shadow var(--transition), transform var(--transition);
+    white-space: nowrap;
+}
+
+.btn i,
+.button i {
+    font-size: 1rem;
+    transition: transform var(--transition);
+}
+
+.btn-primary,
+.button-primary {
+    background: var(--brand-petrol);
+    color: var(--color-white);
+    box-shadow: 0 6px 16px rgba(18, 59, 67, 0.14);
+}
+
+.btn-primary:hover,
+.button-primary:hover {
+    background: var(--brand-aqua-deep);
+    color: var(--brand-petrol);
+    transform: translateY(-2px);
+    box-shadow: 0 9px 20px rgba(18, 59, 67, 0.15);
+}
+
+.btn-primary:active,
+.button-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(18, 59, 67, 0.12);
+}
+
+.btn-outline,
+.button-secondary {
+    border-color: var(--brand-petrol);
+    color: var(--brand-petrol);
+    background: transparent;
+}
+
+.btn-outline:hover,
+.button-secondary:hover {
+    background: rgba(var(--color-accent-rgb), 0.12);
+    border-color: var(--brand-aqua-deep);
+    color: var(--brand-petrol);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 16px rgba(18, 59, 67, 0.08);
+}
+
+.btn-outline:active,
+.button-secondary:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.btn-sm {
+    min-height: 40px;
+    padding: 9px 18px;
+    font-size: 0.85rem;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn:focus-visible,
+.button:focus-visible {
+    outline: 3px solid rgba(var(--color-accent-rgb), 0.42);
+    outline-offset: 3px;
+}
+
+.btn:disabled,
+.button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.service-card,
+.portfolio-card,
+.contact-item,
+.contact-form,
+.legal-section {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-card);
+}
+
+.service-card {
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    text-align: center;
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(var(--color-accent-2-rgb), 0.45);
+    box-shadow: var(--shadow-hover);
+}
+
+.service-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    color: var(--brand-aqua-deep);
+    background: rgba(var(--color-accent-rgb), 0.11);
+    border: 1px solid rgba(var(--color-accent-2-rgb), 0.24);
+    border-radius: 20px;
+    transition: all var(--transition);
+}
+
+.service-card:nth-child(2) .service-icon {
+    color: var(--brand-petrol);
+    background: rgba(18, 59, 67, 0.07);
+    border-color: rgba(18, 59, 67, 0.16);
+}
+
+.service-card:nth-child(3) .service-icon {
+    color: #9A6500;
+    background: #FFF7DE;
+    border-color: #F1D78B;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.08) rotate(-4deg);
+}
+
+.service-title {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+}
+
+.service-text {
+    color: var(--color-gray);
+    font-size: 0.95rem;
+}
+
+.portfolio-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.portfolio-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(var(--color-accent-2-rgb), 0.45);
+    box-shadow: var(--shadow-hover);
+}
+
+.portfolio-thumb {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.2rem;
+    color: var(--brand-petrol);
+    background:
+        radial-gradient(ellipse 60% 70% at 30% 30%, rgba(var(--color-accent-rgb), 0.12), transparent),
+        radial-gradient(ellipse 60% 70% at 70% 70%, rgba(var(--color-accent-2-rgb), 0.10), transparent),
+        var(--bg-surface-soft);
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(18, 59, 67, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 59, 67, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+.portfolio-thumb i {
+    position: relative;
+    z-index: 1;
+}
+
+.portfolio-card:nth-child(2) .portfolio-thumb {
+    color: var(--brand-aqua-deep);
+    background:
+        radial-gradient(ellipse 60% 70% at 30% 30%, rgba(var(--color-accent-2-rgb), 0.12), transparent),
+        radial-gradient(ellipse 60% 70% at 70% 70%, rgba(var(--color-accent-rgb), 0.10), transparent),
+        var(--bg-surface-soft);
+}
+
+.portfolio-body {
+    padding: 28px;
+}
+
+.portfolio-title {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.portfolio-text {
+    color: var(--color-gray);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+/* Acción secundaria de proyecto: texto, flecha y línea de énfasis. */
+.button-link,
+.btn-link,
+.portfolio-card .btn-sm {
+    min-height: 36px;
+    position: relative;
+    padding: 7px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--brand-petrol);
+    box-shadow: none;
+}
+
+.button-link::after,
+.btn-link::after,
+.portfolio-card .btn-sm::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    width: 28px;
+    height: 2px;
+    background: var(--brand-aqua-deep);
+    transition: width var(--transition);
+}
+
+.button-link:hover,
+.btn-link:hover,
+.portfolio-card .btn-sm:hover {
+    background: transparent;
+    color: var(--brand-aqua-deep);
+    box-shadow: none;
+    transform: none;
+}
+
+.button-link:hover::after,
+.btn-link:hover::after,
+.portfolio-card .btn-sm:hover::after {
+    width: 100%;
+}
+
+.button-link:hover i,
+.btn-link:hover i,
+.portfolio-card .btn-sm:hover i {
+    transform: translateX(4px);
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 28px;
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    transition: border-color var(--transition);
+}
+
+.contact-item:hover {
+    border-color: rgba(var(--color-accent-2-rgb), 0.45);
+}
+
+.contact-icon {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--brand-aqua-deep);
+    background: rgba(var(--color-accent-rgb), 0.11);
+    border-radius: 12px;
+}
+
+.contact-item:nth-child(2) .contact-icon {
+    color: var(--brand-petrol);
+    background: rgba(18, 59, 67, 0.07);
+}
+
+.contact-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-gray-dark);
+    margin-bottom: 2px;
+}
+
+.contact-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.contact-value:hover {
+    color: var(--brand-aqua-deep);
+}
+
+.contact-form {
+    border-radius: var(--radius);
+    padding: 36px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-gray);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background: var(--bg-main);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    padding: 13px 16px;
+    transition: border-color var(--transition), box-shadow var(--transition);
+    resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--brand-aqua-deep);
+    box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.18);
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid {
+    border-color: var(--color-error);
+}
+
+.form-group input.invalid:focus,
+.form-group textarea.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.12);
+}
+
+.form-error {
+    display: none;
+    font-size: 0.78rem;
+    color: var(--color-error);
+    margin-top: 6px;
+}
+
+.form-error.visible {
+    display: block;
+}
+
+.form-status {
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.form-status.success {
+    background: rgba(var(--color-accent-rgb), 0.10);
+    border: 1px solid rgba(var(--color-accent-2-rgb), 0.35);
+    color: var(--brand-petrol);
+}
+
+.form-status.error {
+    background: rgba(180, 35, 24, 0.07);
+    border: 1px solid rgba(180, 35, 24, 0.28);
+    color: var(--color-error);
+}
+
+.footer {
+    background: var(--bg-surface-soft);
+    border-top: 1px solid var(--border-soft);
+    padding: 72px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+}
+
+.footer-brand .logo-footer {
+    margin-bottom: 16px;
+}
+
+.footer-tagline {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.footer-legal {
+    font-size: 0.85rem;
+    color: var(--color-gray-dark);
+}
+
+.footer-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+}
+
+.footer-links a:hover {
+    color: var(--brand-aqua-deep);
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+}
+
+.social-link {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--brand-petrol);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    transition: all var(--transition);
+}
+
+.social-link:hover {
+    color: var(--brand-petrol);
+    background: rgba(var(--color-accent-rgb), 0.14);
+    border-color: var(--brand-aqua-deep);
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-soft);
+    padding: 24px 0;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.82rem;
+    color: var(--color-gray-dark);
+}
