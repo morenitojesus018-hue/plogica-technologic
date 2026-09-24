@@ -1,7 +1,16 @@
 import { qs } from '../utils/helpers.js';
 
 const MAX_DEVICE_PIXEL_RATIO = 2;
-const CONNECTION_DISTANCE = 175;
+const CONNECTION_DISTANCE = 190;
+const NODE_ANCHORS = [
+    [0.06, 0.18], [0.15, 0.30], [0.07, 0.48], [0.18, 0.62], [0.29, 0.16],
+    [0.25, 0.80], [0.36, 0.28], [0.42, 0.78], [0.52, 0.15], [0.57, 0.84],
+    [0.65, 0.26], [0.72, 0.72], [0.82, 0.16], [0.90, 0.35], [0.96, 0.60],
+    [0.82, 0.86], [0.69, 0.48], [0.31, 0.48], [0.11, 0.82], [0.93, 0.12],
+    [0.47, 0.48], [0.76, 0.92], [0.04, 0.70], [0.97, 0.78], [0.58, 0.40],
+    [0.21, 0.12], [0.87, 0.54], [0.39, 0.92], [0.13, 0.44], [0.88, 0.78],
+    [0.73, 0.12], [0.33, 0.68], [0.62, 0.64], [0.97, 0.22],
+];
 
 const initHeroNetwork = () => {
     const heroBackground = qs('.hero-bg');
@@ -22,18 +31,30 @@ const initHeroNetwork = () => {
     let animationFrame = null;
     let isVisible = true;
     let lastTimestamp = 0;
+    let elapsedSeconds = 0;
 
     const createNodes = () => {
-        const nodeCount = Math.min(30, Math.max(14, Math.round(width / 58)));
+        const nodeCount = Math.min(NODE_ANCHORS.length, Math.max(18, Math.round(width / 42)));
 
-        nodes = Array.from({ length: nodeCount }, (_, index) => ({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            radius: index % 7 === 0 ? 2.4 : 1.4,
-            driftX: (Math.random() - 0.5) * 0.12,
-            driftY: (Math.random() - 0.5) * 0.08,
-            phase: Math.random() * Math.PI * 2,
-        }));
+        const anchorStep = (NODE_ANCHORS.length - 1) / (nodeCount - 1);
+
+        nodes = Array.from({ length: nodeCount }, (_, index) => {
+            const [anchorX, anchorY] = NODE_ANCHORS[Math.round(index * anchorStep)];
+            const depth = 0.5 + ((index * 17) % 10) / 20;
+            const spread = Math.min(width, height) * 0.018;
+
+            return {
+                x: anchorX * width + (Math.random() - 0.5) * spread,
+                y: anchorY * height + (Math.random() - 0.5) * spread,
+                radius: 1.6 + depth * 2.1,
+                alpha: 0.34 + depth * 0.34,
+                depth,
+                driftX: (Math.random() - 0.5) * (0.08 + depth * 0.06),
+                driftY: (Math.random() - 0.5) * (0.06 + depth * 0.04),
+                phase: Math.random() * Math.PI * 2,
+                pulseSpeed: 0.7 + Math.random() * 0.7,
+            };
+        });
     };
 
     const drawFrame = (deltaSeconds) => {
@@ -51,6 +72,8 @@ const initHeroNetwork = () => {
             }
         });
 
+        const connectionCounts = nodes.map(() => 0);
+
         for (let firstIndex = 0; firstIndex < nodes.length; firstIndex += 1) {
             const firstNode = nodes[firstIndex];
 
@@ -58,26 +81,51 @@ const initHeroNetwork = () => {
                 const secondNode = nodes[secondIndex];
                 const distance = Math.hypot(firstNode.x - secondNode.x, firstNode.y - secondNode.y);
 
-                if (distance > CONNECTION_DISTANCE) continue;
+                if (
+                    distance > CONNECTION_DISTANCE
+                    || connectionCounts[firstIndex] >= 3
+                    || connectionCounts[secondIndex] >= 3
+                ) continue;
 
-                const opacity = (1 - distance / CONNECTION_DISTANCE) * 0.18;
+                const opacity = (1 - distance / CONNECTION_DISTANCE) * 0.28;
                 context.beginPath();
                 context.moveTo(firstNode.x, firstNode.y);
                 context.lineTo(secondNode.x, secondNode.y);
                 context.strokeStyle = `rgba(23, 185, 174, ${opacity})`;
-                context.lineWidth = 1;
+                context.lineWidth = firstNode.depth > 0.78 && secondNode.depth > 0.78 ? 1.15 : 0.85;
                 context.stroke();
+                connectionCounts[firstIndex] += 1;
+                connectionCounts[secondIndex] += 1;
             }
         }
 
         nodes.forEach((node) => {
-            const breathing = reducedMotionQuery.matches
+            const pulse = reducedMotionQuery.matches
                 ? 0
-                : Math.sin(performance.now() / 1800 + node.phase) * 0.35;
+                : Math.sin(elapsedSeconds * node.pulseSpeed + node.phase);
+            const breathing = pulse * 0.55;
+            const radius = node.radius + breathing * 0.35;
+
+            if (node.depth > 0.72) {
+                const glow = context.createRadialGradient(
+                    node.x,
+                    node.y,
+                    0,
+                    node.x,
+                    node.y,
+                    radius * 6
+                );
+                glow.addColorStop(0, `rgba(36, 220, 203, ${node.alpha * 0.22})`);
+                glow.addColorStop(1, 'rgba(36, 220, 203, 0)');
+                context.beginPath();
+                context.arc(node.x, node.y, radius * 6, 0, Math.PI * 2);
+                context.fillStyle = glow;
+                context.fill();
+            }
 
             context.beginPath();
-            context.arc(node.x, node.y, node.radius + breathing, 0, Math.PI * 2);
-            context.fillStyle = 'rgba(23, 185, 174, 0.42)';
+            context.arc(node.x, node.y, radius, 0, Math.PI * 2);
+            context.fillStyle = `rgba(23, 185, 174, ${Math.max(0.24, node.alpha + pulse * 0.06)})`;
             context.fill();
         });
     };
@@ -115,6 +163,7 @@ const initHeroNetwork = () => {
             ? Math.min(timestamp - lastTimestamp, 40) / 1000
             : 0;
         lastTimestamp = timestamp;
+        elapsedSeconds += deltaSeconds;
         drawFrame(deltaSeconds);
         animationFrame = requestAnimationFrame(animate);
     };
@@ -126,6 +175,7 @@ const initHeroNetwork = () => {
 
     const updateMotionPreference = () => {
         stopAnimation();
+        elapsedSeconds = 0;
         drawFrame(0);
         startAnimation();
     };

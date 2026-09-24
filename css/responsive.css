@@ -62,10 +62,31 @@
     .hero {
         min-height: auto;
         padding-top: calc(var(--header-height) + 60px);
+        padding-bottom: 72px;
+    }
+
+    .hero-bg::before {
+        opacity: 0.62;
+    }
+
+    .hero-network {
+        opacity: 0.70;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 10vw, 3rem);
+        line-height: 1.12;
+        margin-bottom: 18px;
+    }
+
+    .hero-subtitle {
+        line-height: 1.65;
+        margin-bottom: 30px;
     }
 
     .hero-actions {
         flex-direction: column;
+        gap: 12px;
         width: 100%;
         max-width: 340px;
         margin: 0 auto;
