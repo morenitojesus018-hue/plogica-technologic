@@ -228,31 +228,33 @@
                 <div class="about-grid">
                     <!-- Columna Izquierda: Manifiesto Editorial -->
                     <div class="about-manifesto">
-                        <div class="manifesto-blocks">
-                            <article class="manifesto-item">
+                        <div class="manifesto-blocks" role="group" aria-label="Manifiesto editorial interactivo">
+                            <button type="button" class="manifesto-item" data-manifesto="1" aria-controls="aboutDynamicPanel" aria-expanded="false" aria-label="Ver detalle: No creemos en desarrollar por desarrollar">
                                 <p class="manifesto-text">
                                     No creemos en desarrollar por desarrollar. Primero entendemos el problema, después diseñamos la solución.
                                 </p>
-                            </article>
+                            </button>
 
-                            <article class="manifesto-item">
+                            <button type="button" class="manifesto-item" data-manifesto="2" aria-controls="aboutDynamicPanel" aria-expanded="false" aria-label="Ver detalle: Construimos productos digitales, automatizaciones y sistemas conectados pensando en cómo funcionan en el mundo real">
                                 <p class="manifesto-text">
                                     Construimos productos digitales, automatizaciones y sistemas conectados pensando en cómo funcionan en el mundo real.
                                 </p>
-                            </article>
+                            </button>
 
-                            <article class="manifesto-item">
+                            <button type="button" class="manifesto-item" data-manifesto="3" aria-controls="aboutDynamicPanel" aria-expanded="false" aria-label="Ver detalle: Somos una empresa en evolución constante, con una visión puesta en la inteligencia aplicada, la automatización y las nuevas formas de construir tecnología">
                                 <p class="manifesto-text">
                                     Somos una empresa en evolución constante, con una visión puesta en la inteligencia aplicada, la automatización y las nuevas formas de construir tecnología.
                                 </p>
-                            </article>
+                            </button>
                         </div>
 
-                        <!-- 5. Frase de Identidad -->
-                        <div class="about-identity-callout">
-                            <blockquote class="identity-quote">
-                                Ideas que conectan oportunidades. Tecnología que las vuelve posibles.
-                            </blockquote>
+                        <!-- 5. Panel Dinámico Interactivo -->
+                        <div class="about-identity-callout" id="aboutDynamicPanel" role="region" aria-live="polite" aria-atomic="true" aria-label="Detalle interactivo del manifiesto">
+                            <div class="panel-inner">
+                                <span class="panel-tag" id="panelTag">ENFOQUE PLOGICA</span>
+                                <h4 class="panel-title" id="panelTitle">Ideas que conectan oportunidades.</h4>
+                                <p class="panel-desc" id="panelDesc">Tecnología que las vuelve posibles.</p>
+                            </div>
                         </div>
                     </div>
 

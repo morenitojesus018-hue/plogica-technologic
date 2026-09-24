@@ -75,6 +75,15 @@
         padding-bottom: 72px;
     }
 
+    .panel-inner {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .manifesto-item:hover {
+        transform: none !important;
+    }
+
     .hero-bg::before {
         opacity: 0.62;
     }
@@ -132,11 +141,15 @@
     }
 
     .about-identity-callout {
-        padding: 18px 20px;
+        padding: 20px 22px;
     }
 
-    .identity-quote {
-        font-size: 0.98rem;
+    .panel-title {
+        font-size: 1.05rem;
+    }
+
+    .panel-desc {
+        font-size: 0.92rem;
     }
 
     .services-editorial {
