@@ -949,6 +949,10 @@
     text-align: left;
 }
 
+.form-error-banner[hidden] {
+    display: none;
+}
+
 .error-banner-icon {
     font-size: 1.25rem;
     color: var(--color-error);
