@@ -36,4 +36,10 @@ export const SERVICES = [
         title: 'Integraciones y evolución tecnológica',
         description: 'Conectamos sistemas, canales y servicios para evitar procesos aislados y facilitar nuevas capacidades.',
     },
+    {
+        num: '07',
+        icon: 'fa-magnifying-glass-chart',
+        title: 'Posicionamiento web y presencia digital',
+        description: 'Optimizamos sitios para que los buscadores puedan encontrarlos, entenderlos y mostrarlos a las personas correctas, trabajando estructura, indexación, contenido, rendimiento y presencia digital.',
+    },
 ];
