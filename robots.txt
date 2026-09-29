@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://plogicatech.netlify.app/sitemap.xml
