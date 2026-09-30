@@ -1,6 +1,60 @@
 /* ==========================================================================
    ESTILOS ESPECÍFICOS DE LA PÁGINA DE INICIO
    ========================================================================== */
+
+/* Reveals repetibles. Los fondos ambientales quedan fuera de estos selectores. */
+.scroll-reveal:not(.is-visible) {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+}
+
+.scroll-reveal.is-visible {
+    animation: scrollReveal 460ms cubic-bezier(0.22, 0.7, 0.3, 1);
+}
+
+@keyframes scrollReveal {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 16px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll-reveal:not(.is-visible) {
+        transform: translate3d(0, 10px, 0);
+    }
+
+    .scroll-reveal.is-visible {
+        animation-duration: 340ms;
+    }
+
+    @keyframes scrollReveal {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 10px, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal,
+    .scroll-reveal:not(.is-visible) {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
+
 .hero {
     position: relative;
     min-height: 100vh;

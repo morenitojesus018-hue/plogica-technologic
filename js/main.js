@@ -6,6 +6,7 @@ import { initAbout } from './modules/about.js';
 import { initPortfolio } from './modules/portfolio.js';
 import { initContact } from './modules/contact.js';
 import { initHeroNetwork } from './modules/hero-network.js';
+import { initScrollReveal } from './modules/scroll-reveal.js';
 
 onDomReady(() => {
     initNavigation();
@@ -14,4 +15,5 @@ onDomReady(() => {
     initPortfolio();
     initContact();
     initHeroNetwork();
+    initScrollReveal();
 });
