@@ -22,16 +22,21 @@ const MOBILE_GROUPED_SELECTORS = [
     '.principle-node',
 ];
 
-export const initScrollReveal = () => {
+export const initScrollReveal = ({
+    selectors: customSelectors = REVEAL_SELECTORS,
+    mobileGroupedSelectors = MOBILE_GROUPED_SELECTORS,
+    mobileGroupReplacements = ['.about-manifesto', '.about-principles-wrapper'],
+    staggerGroups = [],
+} = {}) => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
 
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const selectors = isMobile
-        ? REVEAL_SELECTORS.filter((selector) => !MOBILE_GROUPED_SELECTORS.includes(selector))
-        : REVEAL_SELECTORS;
+        ? customSelectors.filter((selector) => !mobileGroupedSelectors.includes(selector))
+        : [...customSelectors];
 
-    if (isMobile) selectors.push('.about-manifesto', '.about-principles-wrapper');
+    if (isMobile) selectors.push(...mobileGroupReplacements);
 
     const elements = qsa(selectors.join(','));
     if (!elements.length) return;
@@ -62,5 +67,13 @@ export const initScrollReveal = () => {
     elements.forEach((element) => {
         element.classList.add('scroll-reveal');
         observer.observe(element);
+    });
+
+    staggerGroups.forEach((selector) => {
+        qsa(selector).forEach((group) => {
+            [...group.children].forEach((element, index) => {
+                element.style.setProperty('--reveal-order', index % (isMobile ? 2 : 4));
+            });
+        });
     });
 };
